@@ -1,0 +1,119 @@
+package controllers;
+
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
+
+import utils.Serializer;
+
+public class DictionaryAPI  {
+
+	private Serializer serializer;
+
+    public Map<String, String> dictionary = new TreeMap<>();
+    MaxHeap<Items> maxHeap = new MaxHeap<Items>();
+	
+
+    public  DictionaryAPI(Serializer serializer)throws Exception {
+
+		this.serializer = serializer; 
+
+	}
+
+	/**
+	 * @param an empty Constructor 
+	 */
+	public DictionaryAPI() {
+
+	}
+
+
+	/**
+	 * @param load from xml file 
+	 */
+	@SuppressWarnings("unchecked")
+	public void load() throws Exception
+	{
+		serializer.read();
+		//maxHeap = (MaxHeap<Items>) serializer.pop();
+		dictionary = (Map<String, String>) serializer.pop();
+		
+
+	}
+
+	/**
+	 * @param save to xml file
+
+	 */
+
+
+	public void store() throws Exception
+	{
+
+		serializer.push(dictionary);
+		//serializer.push(maxHeap);
+		serializer.write(); 
+
+
+	}
+
+	
+	
+	/**
+	 *@param loadDefaultfiles external files with dictionary data
+	 *@return populated   hashtree of dictionary 
+	 */
+
+	public void loadDefaultFiles() throws FileNotFoundException{
+
+		File usersFile = new File("../Dictionary/lib/SpanishWords.txt");
+		Scanner inUsers = new Scanner(usersFile);
+		String delims = "[ U+002C U+00BF U+FFFD U+00BD  U+00EF \t , ]";//each field in the file is separated(delimited) by a space.
+		while (inUsers.hasNextLine()) {
+			// get name and meaning from data source
+			String userDetails = inUsers.nextLine();
+			userDetails=userDetails.trim();
+
+			// parse user details string
+			String[] userTokens = userDetails.split(delims);
+
+			Items items = new Items(userTokens[1],userTokens[0]);
+
+
+			dictionary.put((userTokens[1]),userTokens[0]);
+	
+			
+			maxHeap.add(items);
+			
+		}
+		inUsers.close();
+
+
+	}
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
