@@ -38,7 +38,7 @@ public class DictionaryAPI  {
 	public void load() throws Exception
 	{
 		serializer.read();
-		//maxHeap = (MaxHeap<Items>) serializer.pop();
+		maxHeap = (MaxHeap<Items>) serializer.pop();
 		dictionary = (Map<String, String>) serializer.pop();
 		
 
@@ -54,7 +54,7 @@ public class DictionaryAPI  {
 	{
 
 		serializer.push(dictionary);
-		//serializer.push(maxHeap);
+		serializer.push(maxHeap);
 		serializer.write(); 
 
 
@@ -69,9 +69,9 @@ public class DictionaryAPI  {
 
 	public void loadDefaultFiles() throws FileNotFoundException{
 
-		File usersFile = new File("../Dictionary/lib/SpanishWords.txt");
+		File usersFile = new File("../Dictionary/lib/Spanish.txt");
 		Scanner inUsers = new Scanner(usersFile);
-		String delims = "[ U+002C U+00BF U+FFFD U+00BD  U+00EF \t , ]";//each field in the file is separated(delimited) by a space.
+		String delims = "\t";//each field in the file is separated(delimited) by a space.
 		while (inUsers.hasNextLine()) {
 			// get name and meaning from data source
 			String userDetails = inUsers.nextLine();
@@ -80,10 +80,10 @@ public class DictionaryAPI  {
 			// parse user details string
 			String[] userTokens = userDetails.split(delims);
 
-			Items items = new Items(userTokens[1],userTokens[0]);
+			Items items = new Items(userTokens[0],userTokens[1]);
 
 
-			dictionary.put((userTokens[1]),userTokens[0]);
+			dictionary.put((userTokens[0]),userTokens[1]);
 	
 			
 			maxHeap.add(items);

@@ -22,6 +22,7 @@ private void siftUp(){
 		T item = items.get(k);
 		T parent = items.get(p);
 		if(item.compareTo(parent) > 0){
+			
 			//swap
 			items.set(k, parent);
 			items.set(p, item);
@@ -34,11 +35,6 @@ private void siftUp(){
 		}
 	}
 }
-
-
-
-
-
 
 
 
@@ -88,6 +84,10 @@ public boolean isEmpty() {
 	return items.isEmpty();
 }
 
+public T getItem(int i){
+	return items.get(i);
+	
+}
 
 @Override
 public int getSize() {
@@ -114,11 +114,13 @@ public void clear() throws NoSuchElementException {
 
 @Override
 public T removeMax()throws NoSuchElementException {
+	System.out.println("Item that has been removed :  " + items.get(0));
 	if(items.size() == 0){
 		throw new NoSuchElementException();
 	}
 	if(items.size()==1){
 	 items.remove(0);
+	 
 	}
 	T hold = items.get(0);
 	items.set(0, items.remove(items.size()-1));

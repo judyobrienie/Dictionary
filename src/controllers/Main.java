@@ -41,13 +41,7 @@ public class Main {
 			d.load();
 		}
 		else d.loadDefaultFiles();
-	System.out.println(d.dictionary);
-
-	System.out.println(d.maxHeap.toString());
-	System.out.println(d.maxHeap.getSize());
 	
-	
-
 
 	/**
 	 * Runs the program using i/o from user
@@ -71,7 +65,16 @@ public class Main {
 					System.out.println("Enter the word: ");
 					input.nextLine(); //swallow bug
 					String temp = input.next();
-					System.out.println(d.dictionary.get(temp));
+					System.out.println("Answer From TreeMap =     " +  d.dictionary.get(temp));
+					
+					
+					for(int i = 0; i < d.maxHeap.getSize(); i++){	
+						
+						if(d.maxHeap.getItem(i).getSpanish().equals(temp))
+								System.out.println("Answer From Heap =    " + d.maxHeap.getItem(i).getEnglish());
+								
+					}	
+					
 					break;
 					
 				case 2:
@@ -94,8 +97,7 @@ public class Main {
 				   
 				case 4:
 					d.maxHeap.removeMax();
-					System.out.println(d.maxHeap.toString());
-					System.out.println(d.maxHeap.getSize());
+					System.out.println("Size of Heap : "  + d.maxHeap.getSize());
 				    break;
 				    
 				default:    System.out.println("Invalid option entered: " + option);
@@ -139,7 +141,7 @@ public class Main {
  */
 
 private static  int mainMenu() {
-	System.out.println("1)Translate a Word to Spanish");
+	System.out.println("1)Translate a Word to English");
 	System.out.println("2)Get Max on Heap"  );
 	System.out.println("3)Add an Item");
 	System.out.println("4)Delete Max Item");

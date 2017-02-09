@@ -6,6 +6,24 @@ package controllers;
  */
 public class Items implements Comparable<Items> {
 
+
+	public String english;
+	public String spanish;
+	
+
+	/** Constructor for object of class Item. 
+	 * @param 
+	 
+	 * @return 
+	 */
+
+	public Items(String spanish, String english)
+	{
+		this.english = english;
+		this.spanish = spanish;
+
+	}
+
 	public String getEnglish() {
 		return english;
 	}
@@ -28,34 +46,17 @@ public class Items implements Comparable<Items> {
 
 	@Override
 	public String toString() {
-		return english + " = "   + spanish;
+		return spanish + " = "   + english;
 	}
 
 
-	public String english;
-	public String spanish;
-	
-
-
-
-	/** Constructor for object of class Item. 
-	 * @param 
-	 
-	 * @return 
-	 */
-
-	public Items(String english, String spanish)
-	{
-		this.english = english;
-		this.spanish = spanish;
-
-	}
 
 
 	@Override
     public int compareTo(Items item) {
-        return this.english.compareTo(item.english);
+        return this.spanish.compareTo(item.spanish);
     }
+
 	
 	
 	
