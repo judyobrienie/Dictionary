@@ -1,26 +1,26 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class MaxHeap <T extends Comparable<T>> implements MaxHeapInterface<T>{
+public class MaxHeap implements MaxHeapInterface{
      
-		private ArrayList<T> items;
+		private ArrayList<Item> items;
 		
 		public MaxHeap(){
 			
-			items = new ArrayList<T>();
+			items = new ArrayList<Item>();
 	
 		}
-
 		
 	//// code from video class notes
 private void siftUp(){
 	int k = items.size()-1;
 	while (k > 0){
 		int p = (k-1)/2;
-		T item = items.get(k);
-		T parent = items.get(p);
+		Item item = items.get(k);
+		Item  parent = items.get(p);
 		if(item.compareTo(parent) > 0){
 			
 			//swap
@@ -53,7 +53,7 @@ private void siftDown(){
 		}
 		if (items.get(k).compareTo(items.get(max)) < 0) {
 			// switch
-			T temp = items.get(k);
+			Item temp = items.get(k);
 			items.set(k, items.get(max));
 			items.set(max, temp);
 			k = max;
@@ -65,6 +65,39 @@ private void siftDown(){
 }//end of siftDown
 
 
+
+public boolean find(String temp){
+
+	int k=0;
+	int current = k;
+	int l=current*2+1;
+	int r = l+1;
+
+
+ Iterator<Item> find = items.iterator();
+ 	while(find.hasNext()){
+	if(getItem(current).getSpanish().equals(temp)){
+		System.out.println("Answer From Depth Search of Heap =    " + getItem(current).getEnglish());
+		return true;
+	}
+	else if((getItem(current).getSpanish().compareTo(temp)   >  1)){
+	
+		current = current*2+1;
+	} 
+	else {
+		current = current*2+2;
+	}
+
+ 	}
+	return false;
+}
+
+	
+
+
+
+
+
 public String toString(){
 	return items.toString();
 }
@@ -72,7 +105,7 @@ public String toString(){
 
 
 @Override
-public void add(T newEntry) {
+public void add(Item newEntry) {
 	items.add(newEntry);
 	siftUp();
 	
@@ -84,7 +117,7 @@ public boolean isEmpty() {
 	return items.isEmpty();
 }
 
-public T getItem(int i){
+public Item getItem(int i){
 	return items.get(i);
 	
 }
@@ -96,24 +129,14 @@ public int getSize() {
 
 
 @Override
-public void clear() throws NoSuchElementException {
-		if(items.size() == 0){
-			throw new NoSuchElementException();
-		}
-		if(items.size()==1){
-		 items.remove(0);
-		}
-		//T hold = items.get(0);
-		items.set(0, items.remove(items.size()-1));
-		siftDown();
-		System.out.println(items.size());
-		
+public void clear() {
+
 	}
 	
 
 
 @Override
-public T removeMax()throws NoSuchElementException {
+public Item removeMax()throws NoSuchElementException {
 	System.out.println("Item that has been removed :  " + items.get(0));
 	if(items.size() == 0){
 		throw new NoSuchElementException();
@@ -122,7 +145,7 @@ public T removeMax()throws NoSuchElementException {
 	 items.remove(0);
 	 
 	}
-	T hold = items.get(0);
+	Item hold = items.get(0);
 	items.set(0, items.remove(items.size()-1));
 	siftDown();
 	return hold;
@@ -130,15 +153,25 @@ public T removeMax()throws NoSuchElementException {
 }
 
 @Override
-public T getMax() {
+public Item getMax() {
 	
-T root = null;
+Item root = null;
     
     if (!isEmpty())
       root = items.get(0);
       
     return root;
-} 
+}
+
+
+
+@Override
+public int compareTo(Item o) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+
 	
 	
 	

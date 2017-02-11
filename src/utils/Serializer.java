@@ -1,7 +1,7 @@
 package utils;
 /**
  * @author Judy
- * Serializer Interface that was supplied as part of the assignment.
+ * Serializer Interface that was supplied as part of an assignment.
  *
  */
 public interface Serializer

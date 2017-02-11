@@ -12,7 +12,7 @@ import java.util.Stack;
 /**
  * @author Judy
  * XML Serializer  that implements Serializer
- * Code has been taken from Pacemaker project supplied in LABs
+ * Code has been taken from previous years labs
  *
  */
 public class XMLSerializer implements Serializer

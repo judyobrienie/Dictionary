@@ -14,7 +14,7 @@ public class DictionaryAPI  {
 	private Serializer serializer;
 
     public Map<String, String> dictionary = new TreeMap<>();
-    MaxHeap<Items> maxHeap = new MaxHeap<Items>();
+    MaxHeap maxHeap = new MaxHeap();
 	
 
     public  DictionaryAPI(Serializer serializer)throws Exception {
@@ -38,7 +38,7 @@ public class DictionaryAPI  {
 	public void load() throws Exception
 	{
 		serializer.read();
-		maxHeap = (MaxHeap<Items>) serializer.pop();
+		maxHeap = (MaxHeap) serializer.pop();
 		dictionary = (Map<String, String>) serializer.pop();
 		
 
@@ -80,7 +80,7 @@ public class DictionaryAPI  {
 			// parse user details string
 			String[] userTokens = userDetails.split(delims);
 
-			Items items = new Items(userTokens[0],userTokens[1]);
+			Item items = new Item(userTokens[0],userTokens[1]);
 
 
 			dictionary.put((userTokens[0]),userTokens[1]);

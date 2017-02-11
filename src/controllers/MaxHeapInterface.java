@@ -1,20 +1,20 @@
 package controllers;
 
-public interface MaxHeapInterface < T extends Comparable < ? super T >>
+public interface MaxHeapInterface extends Comparable<Item>
 {
     /** Task: Adds a new entry to the heap.
     * @param newEntry an object to be added */
-    public void add (T newEntry);
+    public void add ( Item newEntry);
     
     /** Task: Removes and returns the largest item in the heap.
     * @return either the largest object in the heap or,
     * if the heap is empty before the operation, null */
-    public T removeMax ();
+    public Item removeMax ();
     
     /** Task: Retrieves the largest item in the heap.
     * @return either the largest object in the heap or,
     * if the heap is empty, null */
-    public T getMax ();
+    public Item  getMax ();
     
     /** Task: Detects whether the heap is empty.
     * @return true if the heap is empty, else returns false */

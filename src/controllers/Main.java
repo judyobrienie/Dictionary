@@ -67,16 +67,17 @@ public class Main {
 					String temp = input.next();
 					System.out.println("Answer From TreeMap =     " +  d.dictionary.get(temp));
 					
-					
+				
 					for(int i = 0; i < d.maxHeap.getSize(); i++){	
 						
 						if(d.maxHeap.getItem(i).getSpanish().equals(temp))
-								System.out.println("Answer From Heap =    " + d.maxHeap.getItem(i).getEnglish());
+								System.out.println("Answer From Level Search =    " + d.maxHeap.getItem(i).getEnglish());
 								
-					}	
+					}
+					
+					d.maxHeap.find(temp);
 					
 					break;
-					
 				case 2:
 					System.out.println(d.maxHeap.getMax());
 					System.out.println(d.maxHeap.toString());
@@ -90,7 +91,7 @@ public class Main {
 					System.out.println("Enter Spanish translation:");
 					input.nextLine();
 					String spanish = input.next();
-					Items item = new Items(english, spanish);
+					Item item = new Item(english, spanish);
 					d.dictionary.put(english, spanish);
 					d.maxHeap.add(item);
 				    break;
@@ -158,7 +159,6 @@ private static  int mainMenu() {
 
 
 
-	
 
 
 
