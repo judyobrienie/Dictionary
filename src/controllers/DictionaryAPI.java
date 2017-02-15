@@ -14,6 +14,7 @@ public class DictionaryAPI  {
 	private Serializer serializer;
 
     public Map<String, String> dictionary = new TreeMap<>();
+    
     MaxHeap maxHeap = new MaxHeap();
 	
 

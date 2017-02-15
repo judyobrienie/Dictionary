@@ -151,7 +151,8 @@ private static  int mainMenu() {
 
 	System.out.println("0) Exit");
 	System.out.print("==>>");
-	int option = input.nextInt();
+
+int option = input.nextInt();
 	return option;
 }
 
