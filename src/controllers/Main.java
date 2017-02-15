@@ -77,6 +77,7 @@ public class Main {
 					
 					d.maxHeap.find(temp);
 					
+					
 					break;
 				case 2:
 					System.out.println(d.maxHeap.getMax());
@@ -85,10 +86,10 @@ public class Main {
 					break;
 					
 				case 3:
-					System.out.println("Enter English word:");
+					System.out.println("Enter Spanish word:");
 					input.nextLine();
 					String english = input.next();
-					System.out.println("Enter Spanish translation:");
+					System.out.println("Enter English translation:");
 					input.nextLine();
 					String spanish = input.next();
 					Item item = new Item(english, spanish);
@@ -97,7 +98,9 @@ public class Main {
 				    break;
 				   
 				case 4:
+					d.dictionary.remove(d.maxHeap.getItem(0).getSpanish());
 					d.maxHeap.removeMax();
+					
 					System.out.println("Size of Heap : "  + d.maxHeap.getSize());
 				    break;
 				    

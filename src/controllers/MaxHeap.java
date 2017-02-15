@@ -7,6 +7,7 @@ import java.util.NoSuchElementException;
 public class MaxHeap implements MaxHeapInterface {
 
 	private ArrayList<Item> items;
+	int count = 0;
 
 	public MaxHeap() {
 
@@ -66,37 +67,51 @@ public class MaxHeap implements MaxHeapInterface {
 	}
 
 	public boolean find2(String temp, int i) {
-		
-		
+
 		if (getItem(i).getSpanish().equals(temp)){
+
+
+
 			System.out.println("Answer From Depth Search of Heap =    " + getItem(i).getEnglish());
+			System.out.println("No of Traversals :  " + count);
+            count =0;
 			return true;
-		} else if ((getItem(i).getSpanish().compareTo(temp) > 0)) {
-  
+
+		} else if ((getItem(i).getSpanish().compareTo(temp) > 0 )) {
+			count++;
 			int l = 2 * i + 1;
- 			if (l < items.size()) {
+			if (l < items.size()) {
 				find2(temp, l);
- 			}
-			    int r = 2 * i + 2;
-				if (r < items.size()) {
-					return find2(temp, r);
-				} 
-			
-		}
+			}
+
+
+			int r = 2 * i + 2;
+			if (r < items.size()) {
+				find2(temp, r);
+			}
+
+		}//end else if	
+
+
 		return false;
+
 	}
 
-	/*
+
+
+
+
+	/*First Attempt!!
 	 * public boolean find2(String temp, int i) {
 		int l = 2 * i + 1;
 		int r = l + 1;
-		
+
 		if (getItem(i).getSpanish().equals(temp)){
 			System.out.println("Answer From Depth Search of Heap =    " + getItem(i).getEnglish());
 			return true;
 		} else if ((getItem(i).getSpanish().compareTo(temp) > 0)) {
-  
-			
+
+
  			if (l < items.size()) {
 				return find2(temp, l);
 			} else {
@@ -104,23 +119,23 @@ public class MaxHeap implements MaxHeapInterface {
 			}
 		}
 		 else {
-			
+
 			if (i % 2 == 0) {
 				r = i / 2;
 
 				return find2(temp, r);
- 
+
 			} else {
-				
+
 				if (r < items.size()) {
 					return find2(temp, r);
 				} else {
 					return false;
 				}
 
-				
+
 			}
-		
+
 		 }
 	}
 	 * 
@@ -129,10 +144,10 @@ public class MaxHeap implements MaxHeapInterface {
 	 * 
 	 * 
 	 */
-	
-	
-	
-	
+
+
+
+
 	public String toString() {
 		return items.toString();
 	}
@@ -172,6 +187,7 @@ public class MaxHeap implements MaxHeapInterface {
 		}
 		if (items.size() == 1) {
 			items.remove(0);
+			
 
 		}
 		Item hold = items.get(0);
