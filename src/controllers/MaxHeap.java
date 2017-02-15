@@ -66,6 +66,28 @@ public class MaxHeap implements MaxHeapInterface {
 	}
 
 	public boolean find2(String temp, int i) {
+		
+		
+		if (getItem(i).getSpanish().equals(temp)){
+			System.out.println("Answer From Depth Search of Heap =    " + getItem(i).getEnglish());
+			return true;
+		} else if ((getItem(i).getSpanish().compareTo(temp) > 0)) {
+  
+			int l = 2 * i + 1;
+ 			if (l < items.size()) {
+				find2(temp, l);
+ 			}
+			    int r = 2 * i + 2;
+				if (r < items.size()) {
+					return find2(temp, r);
+				} 
+			
+		}
+		return false;
+	}
+
+	/*
+	 * public boolean find2(String temp, int i) {
 		int l = 2 * i + 1;
 		int r = l + 1;
 		
@@ -101,7 +123,16 @@ public class MaxHeap implements MaxHeapInterface {
 		
 		 }
 	}
-
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
+	
+	
+	
+	
 	public String toString() {
 		return items.toString();
 	}
