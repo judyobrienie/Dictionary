@@ -24,7 +24,6 @@ public interface MaxHeapInterface extends Comparable<Item>
     * @return the number of entries currently in the heap */
     public int getSize ();
     
-    /** Task: Removes all entries from the heap. */
-    public void clear ();
+   
     
 } // end MaxHeapInterface

@@ -3,7 +3,11 @@ package controllers;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
+/**
+ * @author Judy
+ * @param A MaxHeap Class 
+ * Create a MaxHeap from Array List of 'Items' 
+ */
 public class MaxHeap implements MaxHeapInterface {
 
 	private ArrayList<Item> items;
@@ -15,7 +19,13 @@ public class MaxHeap implements MaxHeapInterface {
 
 	}
 
-	//// code from video class notes
+	/**
+	 * Code from video class notes
+	 * @param compares two items and moves the the higher value up 
+	 * @returns a sorted heap branch based on implemented comparator
+	 * 
+	 */
+	
 	private void siftUp() {
 		int k = items.size() - 1;
 		while (k > 0) {
@@ -37,7 +47,14 @@ public class MaxHeap implements MaxHeapInterface {
 		}
 	}
 
-	// code from video class notes
+	/**
+	 * Code from video class notes
+	 * @param compares two items and moves the lower value down
+	 * @return a sorted heap branch based on implemented comparator
+	 * 
+	 */
+	
+	
 	private void siftDown() {
 		int k = 0;
 		int l = 2 * k + 1;
@@ -60,41 +77,54 @@ public class MaxHeap implements MaxHeapInterface {
 			}
 		}
 	}// end of siftDown
+	
+	
+	/**
+	 * 
+	 * @param 'temp' an item 'key' that you want to search the heap for
+	 * @return returns the 'value' of that key
+	 */
 
 	public boolean find(String temp) {
 
 		return find2(temp, 0);
 	}
-
+	
+/**
+ * @param temp an item to search for and i the index where to search
+ * @return true/false Printing out the the value of the matching item for temp
+ * ******************BUGS*****************************************************
+ */
 	public boolean find2(String temp, int i) {
 
 		if (getItem(i).getSpanish().equals(temp)){
 
-
-
 			System.out.println("Answer From Depth Search of Heap =    " + getItem(i).getEnglish());
 			System.out.println("No of Traversals :  " + count);
             count =0;
+           
 			return true;
+			
 
 		} else if ((getItem(i).getSpanish().compareTo(temp) > 0 )) {
 			count++;
 			int l = 2 * i + 1;
 			if (l < items.size()) {
-				find2(temp, l);
-			}
-
+				find2(temp, l); 
+			}else {
+					return false;
+				}
 
 			int r = 2 * i + 2;
 			if (r < items.size()) {
 				find2(temp, r);
+				}else {
+					return false;
 			}
-
+		
 		}//end else if	
-
-
+		
 		return false;
-
 	}
 
 
@@ -114,8 +144,6 @@ public class MaxHeap implements MaxHeapInterface {
 
  			if (l < items.size()) {
 				return find2(temp, l);
-			} else {
-				return false;
 			}
 		}
 		 else {
@@ -146,38 +174,56 @@ public class MaxHeap implements MaxHeapInterface {
 	 */
 
 
-
+/**
+ * A method to return a string representation 
+ * @return a string representation
+ */
 
 	public String toString() {
 		return items.toString();
 	}
 
+	/**
+	 * A method to add a new entry to a heap
+	 * @param newEntry and entry from a user 
+	 */
+	
 	@Override
 	public void add(Item newEntry) {
 		items.add(newEntry);
 		siftUp();
-
 	}
 
+	/**
+	 * A method to check if heap is empty
+	 * @param True or False
+	 */
 	@Override
 	public boolean isEmpty() {
 		return items.isEmpty();
 	}
 
+	
+	/**
+	 * @return an item at index i
+	 */
 	public Item getItem(int i) {
 		return items.get(i);
 
 	}
 
+	/**
+	 * @return the size of the array of items
+	 */
 	@Override
 	public int getSize() {
 		return items.size();
 	}
 
-	@Override
-	public void clear() {
-
-	}
+	/**
+	 * A method  to remove the item at the top of the heap
+	 * which is at index 0
+	 */
 
 	@Override
 	public Item removeMax() throws NoSuchElementException {
@@ -197,6 +243,11 @@ public class MaxHeap implements MaxHeapInterface {
 
 	}
 
+	/**
+	 * A method to return an item at the top of the heap
+	 * which is at index 0
+	 * @return item at top of heap which is at index 0
+	 */
 	@Override
 	public Item getMax() {
 
