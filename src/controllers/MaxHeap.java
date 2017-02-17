@@ -1,7 +1,7 @@
 package controllers;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+
 import java.util.NoSuchElementException;
 /**
  * @author Judy
@@ -85,9 +85,9 @@ public class MaxHeap implements MaxHeapInterface {
 	 * @return returns the 'value' of that key
 	 */
 
-	public boolean find(String temp) {
+	public String find(String temp) {
 
-		return find2(temp, 0);
+		return find2(temp, 0,0);
 	}
 	
 /**
@@ -95,7 +95,35 @@ public class MaxHeap implements MaxHeapInterface {
  * @return true/false Printing out the the value of the matching item for temp
  * ******************BUGS*****************************************************
  */
-	public boolean find2(String temp, int i) {
+	public String find2(String temp, int i,int steps) {
+		 steps++;
+		 String left = null;
+		 String right = null;
+		if(i >= items.size()) return null;
+		if (getItem(i).getSpanish().equals(temp)){
+			
+
+			System.out.println("Answer From Depth Search of Heap =    " + getItem(i).getEnglish());
+			System.out.println("No of Traversals :  " + count);
+            
+            System.out.println("No of Steps = " + steps);   //code from Alex
+			return getItem(i).getEnglish();
+
+		}
+		else if ((getItem(i).getSpanish().compareTo(temp) > 0 )) {
+			count++;
+			int l = 2 * i + 1;
+			left = find2(temp, l,steps);
+			int r = 2 * i + 2;
+			right = find2(temp, r,steps);
+		}else
+			return null;
+		if(left == null) return right;
+		return left;
+	}
+
+	/*First Attempt!!
+	 public boolean find2(String temp, int i) {
 
 		if (getItem(i).getSpanish().equals(temp)){
 
@@ -127,44 +155,6 @@ public class MaxHeap implements MaxHeapInterface {
 		return false;
 	}
 
-
-
-
-
-	/*First Attempt!!
-	 * public boolean find2(String temp, int i) {
-		int l = 2 * i + 1;
-		int r = l + 1;
-
-		if (getItem(i).getSpanish().equals(temp)){
-			System.out.println("Answer From Depth Search of Heap =    " + getItem(i).getEnglish());
-			return true;
-		} else if ((getItem(i).getSpanish().compareTo(temp) > 0)) {
-
-
- 			if (l < items.size()) {
-				return find2(temp, l);
-			}
-		}
-		 else {
-
-			if (i % 2 == 0) {
-				r = i / 2;
-
-				return find2(temp, r);
-
-			} else {
-
-				if (r < items.size()) {
-					return find2(temp, r);
-				} else {
-					return false;
-				}
-
-
-			}
-
-		 }
 	}
 	 * 
 	 * 
