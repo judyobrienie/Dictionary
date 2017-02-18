@@ -85,18 +85,18 @@ public class MaxHeap implements MaxHeapInterface {
 	 * @return returns the 'value' of that key
 	 */
 
-	public String find(String temp) {
+	public String find3(String temp) {
 
-		return find2(temp, 0,0);
+		return find4(temp, 0,0);
 	}
 	
 /**
  * @param temp an item to search for and i the index where to search
  * @return true/false Printing out the the value of the matching item for temp
- * ******************BUGS*****************************************************
+ * ******************Code with Alex help from class****************************
  */
-	public String find2(String temp, int i,int steps) {
-		 steps++;
+	public String find4(String temp, int i,int step) {
+		 step++;
 		 String left = null;
 		 String right = null;
 		if(i >= items.size()) return null;
@@ -106,63 +106,78 @@ public class MaxHeap implements MaxHeapInterface {
 			System.out.println("Answer From Depth Search of Heap =    " + getItem(i).getEnglish());
 			System.out.println("No of Traversals :  " + count);
             
-            System.out.println("No of Steps = " + steps);   //code from Alex
+            System.out.println("No of Steps = " + step);   //code from Alex
 			return getItem(i).getEnglish();
 
 		}
 		else if ((getItem(i).getSpanish().compareTo(temp) > 0 )) {
 			count++;
 			int l = 2 * i + 1;
-			left = find2(temp, l,steps);
+			left = find4(temp, l,step);
 			int r = 2 * i + 2;
-			right = find2(temp, r,steps);
+			right = find4(temp, r,step);
 		}else
 			return null;
 		if(left == null) return right;
 		return left;
 	}
+	
+	
+	
+	
 
-	/*First Attempt!!
+	/**
+	 * 
+	 * @param 'temp' an item 'key' that you want to search the heap for
+	 * @return returns the 'value' of that key
+	 */
+
+	public Boolean find(String temp) {
+
+		return find2(temp, 0);
+	}
+	
+	
+	/**
+	 * @param temp an item to search for and i the index where to search
+	 * @return true/false Printing out the the value of the matching item for temp
+	 * 
+	 */
+
+	
 	 public boolean find2(String temp, int i) {
-
+		
+		 
+		 boolean find= false;
+		 
 		if (getItem(i).getSpanish().equals(temp)){
 
 			System.out.println("Answer From Depth Search of Heap =    " + getItem(i).getEnglish());
 			System.out.println("No of Traversals :  " + count);
-            count =0;
-           
+			
+            
+            find = true;
 			return true;
 			
-
-		} else if ((getItem(i).getSpanish().compareTo(temp) > 0 )) {
+		}
+		
+		if ((getItem(i).getSpanish().compareTo(temp) > 0 && find)); {
 			count++;
 			int l = 2 * i + 1;
-			if (l < items.size()) {
-				find2(temp, l); 
-			}else {
-					return false;
-				}
-
+			if (l < items.size() ? find2(temp, l):  false);
+			
 			int r = 2 * i + 2;
-			if (r < items.size()) {
-				find2(temp, r);
-				}else {
-					return false;
-			}
+			if (r < items.size() ? find2(temp, r): false);
+				
 		
 		}//end else if	
+		
 		
 		return false;
 	}
 
-	}
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
-
+	
+	
 
 /**
  * A method to return a string representation 

@@ -74,8 +74,12 @@ public class Main {
 								System.out.println("Answer From Level Search =    " + d.maxHeap.getItem(i).getEnglish());
 								
 					}
-					
+					System.out.println("========================\n");
+					System.out.println("Answer From Judys Search\n");
 					d.maxHeap.find(temp);
+					System.out.println("========================\n");
+					System.out.println("Answer From Other Search");
+					d.maxHeap.find3(temp);
 					
 					
 					break;
@@ -135,9 +139,6 @@ public class Main {
 }
 
 
-
-
-
 /**
  * mainMenu() - This method displays the menu for the application, 
  * reads the menu option that the user entered and returns it.
@@ -148,6 +149,7 @@ private static  int mainMenu() {
 	System.out.println("1)Translate a Word to English");
 	System.out.println("2)Get Max on Heap"  );
 	System.out.println("3)Add an Item");
+	
 	System.out.println("4)Delete Max Item");
 	
 
